@@ -1,1 +1,43 @@
-"Hello World"
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<h1>Ingredient Filter</h1>
+<textarea rows="4" cols="50" id="filter">
+</textarea>
+
+<h1>Commas separted Ingredients</h1>
+<textarea rows="4" cols="50" id=ingredients>
+</textarea>
+
+<button onclick="filterText()">Submit</button>
+
+<h1>Ingredients you don't want in list : </h1>
+<h1 id="result"> </h1>
+
+<script>
+    function filterText()
+    {
+        var filter = document.getElementById("filter").value;
+        var filterList = filter.split(',')
+        filterList = filterList.map(function(x){return x.toLowerCase().trim()});
+
+        var ingredients = document.getElementById("ingredients").value;
+        var ingredientsList = ingredients.split(',')
+        ingredientsList = ingredientsList.map(function(x){return x.toLowerCase().trim()});
+
+        var filteredElements = []
+
+        filterList.forEach(element => {
+            if (ingredientsList.includes(element)){
+                filteredElements.push(element)
+            }
+        });
+
+    
+        document.getElementById("result").innerHTML = filteredElements;
+    }
+</script>
+</body>
+</html>
